@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" name="org.fipro.client.ui.offline.DataManagerSwitch">
+   <service>
+      <provide interface="org.fipro.client.ui.offline.DataManagerSwitch"/>
+   </service>
+   <reference cardinality="1..1" field="configAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" name="configAdmin"/>
+   <reference cardinality="1..1" field="importer" interface="org.fipro.client.ui.edef.EdefImporter" name="importer"/>
+   <implementation class="org.fipro.client.ui.offline.DataManagerSwitch"/>
+</scr:component>

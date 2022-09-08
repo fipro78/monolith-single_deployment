@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" name="org.fipro.client.ui.offline.OnlineModeSwitch">
+   <service>
+      <provide interface="org.fipro.client.ui.offline.OnlineModeSwitch"/>
+   </service>
+   <reference cardinality="1..1" field="importer" interface="org.fipro.client.ui.edef.EdefImporter" name="importer"/>
+   <reference cardinality="0..n" field="localStringModifier" field-collection-type="reference" interface="org.fipro.service.modifier.StringModifier" name="localStringModifier" policy="dynamic" target="(!(service.imported=*))"/>
+   <reference cardinality="1..1" field="runtime" interface="org.osgi.service.component.runtime.ServiceComponentRuntime" name="runtime"/>
+   <implementation class="org.fipro.client.ui.offline.OnlineModeSwitch"/>
+</scr:component>

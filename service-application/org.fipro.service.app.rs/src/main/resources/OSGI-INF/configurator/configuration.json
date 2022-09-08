@@ -1,0 +1,5 @@
+{
+    ":configurator:resource-version" : 1,
+    ":configurator:symbolic-name" : "org.fipro.service.rs.app.config",
+    ":configurator:version" : "1.0-SNAPSHOT"
+}
