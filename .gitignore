@@ -18,6 +18,9 @@ generated/
 class/
 *.class
 
+#Ignore tycho temporary files
+.polyglot.*
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
@@ -31,3 +34,12 @@ node_modules
 *.vsix
 plugins
 gen-webpack.config.js
+gen-webpack.node.config.js
+.browser_modules
+*.log
+.yarn
+
+# Python gitignore
+__pycache__/
+*.py[cod]
+*$py.class

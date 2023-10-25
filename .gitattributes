@@ -1,5 +1,9 @@
 # Auto detect text files and perform LF normalization
-*        		text=auto
+* text=auto
+
+# Never modify line endings of bash scripts
+*.sh eol=lf
+*.json eol=lf
 
 # Explicitly declare text files we want to always be normalized and converted 
 # to native line endings on checkout.
@@ -9,7 +13,7 @@
 *.js     		text
 *.ts			text
 *.sql    		text
-*.properties		text
+*.properties	text
 *.json			text
 *.md			text
 

@@ -1,0 +1,48 @@
+{
+    "private": true,
+    "name": "theia-app",
+    "version": "0.1.0",
+    "dependencies": {
+      "@theia/core": "1.42.1",
+      "@theia/editor": "1.42.1",
+      "@theia/filesystem": "1.42.1",
+      "@theia/markers": "1.42.1",
+      "@theia/messages": "1.42.1",
+      "@theia/monaco": "1.42.1",
+      "@theia/navigator": "1.42.1",
+      "@theia/outline-view": "1.42.1",
+      "@theia/plugin-ext": "1.42.1",
+      "@theia/plugin-ext-vscode": "1.42.1",
+      "@theia/preferences": "1.42.1",
+      "@theia/process": "1.42.1",
+      "@theia/terminal": "1.42.1",
+      "@theia/workspace": "1.42.1",
+      "@vscode/ripgrep": "1.15.6",
+      "theia-customization": "0.1.0"
+    },
+    "devDependencies": {
+      "@theia/cli": "1.42.1"
+    },
+    "scripts": {
+      "prepare": "dos2unix -F node_modules/.bin/theia && yarn run clean && yarn run build && yarn run download:plugins",
+      "clean": "theia clean",
+      "build": "theia build --mode development",
+      "start": "theia start --plugins=local-dir:plugins",
+      "watch": "theia build --watch --mode development",
+      "download:plugins": "theia download:plugins"
+    },
+    "theiaPluginsDir": "plugins",
+    "theiaPlugins": { },
+    "theia": {
+      "target": "browser",
+      "frontend": {
+        "config": {
+          "applicationName": "Theia Example Application",
+          "preferences": {
+            "//window.menuBarVisibility": "hidden"
+          },
+          "warnOnPotentiallyInsecureHostPattern": false
+        }
+      }
+    }
+}

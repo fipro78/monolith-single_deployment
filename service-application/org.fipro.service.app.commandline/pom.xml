@@ -30,6 +30,10 @@
     </dependency>
     <!--  Declarative Services  -->
     <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.scr</artifactId>
     </dependency>

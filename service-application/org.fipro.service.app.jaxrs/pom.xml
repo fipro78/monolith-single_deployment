@@ -29,6 +29,10 @@
     </dependency>
     <!--  Declarative Services  -->
     <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.scr</artifactId>
     </dependency>
@@ -118,6 +122,11 @@
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.configurator</artifactId>
+    </dependency>
+    <!-- OSGi Service Loader Mediator -->
+    <dependency>
+        <groupId>org.apache.aries.spifly</groupId>
+        <artifactId>org.apache.aries.spifly.dynamic.bundle</artifactId>
     </dependency>
 
     <!--  Several implementations need to log using SLF4J  -->

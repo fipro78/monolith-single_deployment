@@ -35,6 +35,10 @@
     </dependency>
     <!--  Declarative Services  -->
     <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.scr</artifactId>
     </dependency>
@@ -169,10 +173,12 @@
     </dependency>
 
     <!-- Equinox OSGi Http Service and Http Whiteboard -->
+    <!--
     <dependency>
       <groupId>org.eclipse.platform</groupId>
       <artifactId>org.eclipse.osgi.services</artifactId>
     </dependency>
+    -->
     <dependency>
       <groupId>org.eclipse.platform</groupId>
       <artifactId>org.eclipse.equinox.http.jetty</artifactId>

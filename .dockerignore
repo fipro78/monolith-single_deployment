@@ -1,0 +1,7 @@
+**/lib/
+**/node_modules/
+**/plugins
+**/src-gen/
+**/target/
+yarn.lock
+**/*.vsix

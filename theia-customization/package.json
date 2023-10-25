@@ -1,0 +1,30 @@
+{
+  "name": "theia-customization",
+  "keywords": [
+    "theia-extension"
+  ],
+  "version": "0.1.0",
+  "license": "See license in LICENSE",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@theia/core": "1.42.1"
+  },
+  "devDependencies": {
+    "rimraf": "latest",
+    "typescript": "latest"
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build",
+    "clean": "rimraf lib",
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "theiaExtensions": [
+    {
+      "frontend": "lib/browser/customization-frontend-module"
+    }
+  ]
+}
