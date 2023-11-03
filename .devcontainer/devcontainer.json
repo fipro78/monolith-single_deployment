@@ -58,7 +58,7 @@
 	// Happens after updateContentCommand and once the dev container has been assigned to a user for the first time.
     // install code generator for vs code, theia extensions, theia plugins and install the dependencies
 	// need to be done here and not in the Dockerfile, because npm is installed via the features and therefore not yet available in the Docker process
-	"postCreateCommand": "./.devcontainer/postCreate.sh"
+	"postCreateCommand": "chmod 777 ./.devcontainer/postCreate.sh; ./.devcontainer/postCreate.sh"
 
     // Runs each time the container is successfully started
 	// Starts the trace compass server. Downloads the server if not yet available.
