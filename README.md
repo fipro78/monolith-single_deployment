@@ -11,6 +11,8 @@ These projects use a Java/Maven project layout.
 The folder *vscode-extension* contains a simple extension for VS Code to show the integration of a REST service. It is configured to use the services published via
 the Remote Service application of the *service-application*.
 
+The folder _theia-customization_ a **Theia Extension** that modifies the default layout of the application by adding a header banner. The folder _theia-app_ contains the project to build a **Theia Application** that contains the VSCode Extension and the Theia Extension.
+
 ## Build & Run the example
 
 The following section describes the process for building and running the example.
@@ -31,10 +33,10 @@ After the build succeeds the remoteservice example application can be started vi
     java -jar org.fipro.service.app.rs\target\rs-app.jar 
 
 You can verify if the application is started by accessing the following URL in a browser:  
-http://localhost:8181/service/camelcase/modify/osgicommunityday
+http://localhost:8282/camelcase/osgicommunityday
 
 __Note__  
-The build also produces a commandline application and a JAX-RS Whiteboard application that can be tested.
+The build also produces a commandline application and a Jakarta-RS Whiteboard application that can be tested.
 
 ### Client Applications
 
@@ -52,5 +54,5 @@ Alternatively you can start the application from within an Eclipse IDE:
 
 Additionally in _vscode-extension_ there is an example on how to integrate the service in Visual Studio Code. To see this in action, open the folder _vscode-extension_
 in VS Code and execute the extension via F5. In the then opened VS Code instance select a word in the editor, press F1 and select *Modify Selection*.
-If the Remove Service Application with JAX-RS Distribution Provider is running, the selected text should be changed to uppercase.  
+If the Remove Service Application with Jakarta-RS Distribution Provider is running, the selected text should be changed to uppercase.  
 Note that a devcontainer is configured to reduce the installation needs in the host system.

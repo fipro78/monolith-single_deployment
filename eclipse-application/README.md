@@ -7,8 +7,8 @@ The project setup is based on Eclipse PDE to help in migrating a PDE based Eclip
 ## Prerequisites
 
 To build the examples you need at least:
-- Java  >= 11
-- Maven >= 3.6.3
+- Java  >= 17
+- Maven >= 3.9.6
 
 For editing the example a current Eclipse IDE with PDE is recommended.
 
@@ -41,7 +41,7 @@ The following list shows the plug-in projects of this example:
 
 The following list shows the feature projects of this example:
 * __org.fipro.client.ecf.feature__ - Collects all bundles that are needed for ECF.
-* __org.fipro.client.jaxrs.feature__ - Collects all bundles that are needed for the ECF JAX-RS Distribution Provider.
+* __org.fipro.client.jakartars.feature__ - Collects all bundles that are needed for the ECF Jakarta-RS Distribution Provider.
 * __org.fipro.client.ui.feature__ - Collects all bundles that are needed for the user interface.
 
 ## Product Projects
