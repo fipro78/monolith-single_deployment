@@ -14,9 +14,9 @@
         }
       },
       {
-        "label": "Run JAX-RS Service App",
+        "label": "Run Jakarta-RS Service App",
         "type": "shell",
-        "command": "java -jar ./service-application/org.fipro.service.app.jaxrs/target/jaxrs-app.jar",
+        "command": "java -jar ./service-application/org.fipro.service.app.jakartars/target/jakartars-app.jar",
         "group": "test",
         "presentation": {
           "reveal": "always",

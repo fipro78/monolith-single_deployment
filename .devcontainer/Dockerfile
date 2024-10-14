@@ -26,10 +26,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
      && apt-get -y install --no-install-recommends \
      make \
      gcc \
-	 dos2unix \
+     dos2unix \
      pkg-config \
      build-essential \
-     python3.10 \
+     python3.11 \
      software-properties-common \
      libx11-dev \
      libxkbfile-dev \

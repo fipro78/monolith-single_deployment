@@ -18,10 +18,10 @@
 			"jdkDistro": "tem",
             "installGradle": "false",
             "installMaven": "true",
-            "mavenVersion": "3.9.4"
+            "mavenVersion": "3.9.6"
         },
         "ghcr.io/devcontainers/features/node:1": {
-			"version": "18"
+			"version": "20"
 		},
         "ghcr.io/devcontainers/features/git:1": {}
     },

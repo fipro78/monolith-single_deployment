@@ -1,18 +1,20 @@
 {
-    "private": true,
-    "scripts": {
-      "restart:fresh": "yarn prepare && yarn start:browser",
-      "prepare": "yarn symlink && lerna run prepare",
-      "rebuild:browser": "theia rebuild:browser",
-      "start:browser": "yarn rebuild:browser && yarn --cwd theia-app start",
-      "watch": "lerna run --parallel watch",
-      "symlink": "symlink-dir ./vscode-extension ./theia-app/plugins/vscode-extension"
-    },
-    "devDependencies": {
-      "lerna": "^7.4.1",
-      "symlink-dir": "^5.2.0"
-    },
-    "workspaces": [
-      "vscode-extension", "theia-customization", "theia-app"
-    ]
+  "private": true,
+  "scripts": {
+    "restart:fresh": "yarn prepare && yarn start:browser",
+    "prepare": "yarn symlink && lerna run prepare",
+    "rebuild:browser": "theia rebuild:browser",
+    "start:browser": "yarn rebuild:browser && yarn --cwd theia-app start",
+    "watch": "lerna run --parallel watch",
+    "symlink": "symlink-dir ./vscode-extension ./theia-app/plugins/vscode-extension"
+  },
+  "devDependencies": {
+    "lerna": "^8.1.8",
+    "symlink-dir": "^6.0.2"
+  },
+  "workspaces": [
+    "vscode-extension",
+    "theia-customization",
+    "theia-app"
+  ]
 }

@@ -1,4 +1,3 @@
-// Need to use cross-fetch as VSCode uses Node 16. fetch was added in Node with version 18
 import fetch from 'cross-fetch';
 // The module 'vscode' contains the VSCode extensibility API
 // Import the module and reference it with the alias vscode in your code below
@@ -7,13 +6,13 @@ import * as vscode from 'vscode';
 async function modifyREST(input:string) {
 	// get the base url from the configuration
 	const configuration = vscode.workspace.getConfiguration();
-	let baseURI = configuration.get<string>('modifier.service.baseuri', 'http://host.docker.internal:8181/service/');
+	let baseURI = configuration.get<string>('modifier.service.baseuri', 'http://host.docker.internal:8282/');
 
 	if (!baseURI.endsWith("/")) {
 		baseURI = baseURI + "/";
 	}
 	
-	let serviceURI = configuration.get<string>('modifier.service.uri', 'uppercase/modify/');
+	let serviceURI = configuration.get<string>('modifier.service.uri', 'uppercase/');
 	
 	if (!serviceURI.endsWith("/")) {
 		serviceURI = serviceURI + "/";
@@ -22,7 +21,6 @@ async function modifyREST(input:string) {
 	// execute a call to the REST based service
 	const response = await fetch (baseURI + serviceURI + input);
 	// const response = await fetch ('http://host.docker.internal:8282/uppercase/' + input);
-	// const response = await fetch ('http://host.docker.internal:8181/service/uppercase/modify/' + input);
 	const data = await response.text();
 	return data;
 }
