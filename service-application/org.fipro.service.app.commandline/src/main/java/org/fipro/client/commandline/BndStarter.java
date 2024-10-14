@@ -31,7 +31,7 @@ public class BndStarter {
     	// we only want to execute the modification once in the commandline variant
     	// no need to store the reference
     	for (String arg : launcherArgs) {
-    		System.out.println(modifier.modify(arg));
+    		System.out.println(modifier.getClass().getName() + " - " + modifier.modify(arg));
     	}
     }
     

@@ -4,13 +4,13 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 import org.fipro.service.data.DataManager;
 import org.osgi.service.component.annotations.Component;
@@ -18,11 +18,10 @@ import org.osgi.service.component.annotations.Component;
 @Path("/data")
 @Produces(MediaType.APPLICATION_JSON)
 @Component(
-	immediate = true,
 	property = {
 		"service.exported.interfaces=*",
-		"service.exported.intents=jaxrs",
-        "ecf.jaxrs.server.pathPrefix=/name"})
+		"service.exported.intents=jakartars",
+		"osgi.jakartars.resource=true"})
 public class NameDataManager implements DataManager {
 
 	private ConcurrentHashMap<UUID, String> dataMap = new ConcurrentHashMap<>();

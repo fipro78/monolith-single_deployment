@@ -3,30 +3,262 @@
 <target name="org.fipro.client.target">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/releases/2021-12"/>
-			<unit id="org.eclipse.equinox.compendium.sdk.feature.group" version="3.22.200.v20211021-1418"/>
-			<unit id="org.eclipse.equinox.core.sdk.feature.group" version="3.23.200.v20211104-1730"/>
-			<unit id="org.eclipse.equinox.executable.feature.group" version="3.8.1400.v20211117-0650"/>
-			<unit id="org.eclipse.equinox.server.jetty.feature.group" version="1.10.900.v20211021-1418"/>
-			<unit id="org.eclipse.sdk.feature.group" version="4.22.0.v20211124-1800"/>
+			<repository location="https://download.eclipse.org/releases/2024-09"/>
+			<unit id="org.eclipse.equinox.compendium.sdk.feature.group" version="3.23.300.v20240722-2103"/>
+			<unit id="org.eclipse.equinox.core.sdk.feature.group" version="3.25.200.v20240722-2103"/>
+			<unit id="org.eclipse.equinox.executable.feature.group" version="3.8.2600.v20240722-2106"/>
+			<unit id="org.eclipse.rcp.feature.group" version="4.33.0.v20240903-0618"/>
 			<unit id="ch.qos.logback.classic" version="0.0.0"/>
 			<unit id="ch.qos.logback.core" version="0.0.0"/>
 		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://raw.githubusercontent.com/ECF/JaxRSProviders/master/build/"/>
-			<unit id="org.eclipse.ecf.provider.jersey.client.feature.feature.group" version="0.0.0"/>
-			<unit id="org.eclipse.ecf.provider.jersey.server.feature.feature.group" version="0.0.0"/>
-		</location>
         <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-            <repository location="https://download.eclipse.org/rt/ecf/3.14.31/site.p2"/>
-            <unit id="org.eclipse.ecf.remoteservice.sdk.feature.feature.group" version="3.14.31.v20220116-0708"/>
+            <repository location="https://download.eclipse.org/rt/ecf/3.15.2/site.p2"/>
+            <unit id="org.eclipse.ecf.remoteservice.sdk.feature.feature.group" version="3.15.2.v20240812-1535"/>
         </location>
-		<location includeDependencyDepth="direct" includeSource="true" missingManifest="generate" type="Maven">
+		<location includeDependencyDepth="direct" includeDependencyScopes="compile" includeSource="true" missingManifest="generate" type="Maven">
 			<dependencies>
 				<dependency>
 					<groupId>org.fipro.service</groupId>
 					<artifactId>impl</artifactId>
 					<version>1.0-SNAPSHOT</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.fipro.service</groupId>
+					<artifactId>app.jakartars</artifactId>
+					<version>1.0-SNAPSHOT</version>
+					<type>jar</type>
+				</dependency>
+			</dependencies>
+		</location>
+		<location includeDependencyDepth="direct" includeDependencyScopes="compile" includeSource="true" label="Jetty" missingManifest="generate" type="Maven">
+			<dependencies>
+		      <dependency>
+		        <groupId>org.eclipse.jetty</groupId>
+		        <artifactId>jetty-http</artifactId>
+		        <version>11.0.20</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.eclipse.jetty</groupId>
+		        <artifactId>jetty-io</artifactId>
+		        <version>11.0.20</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.eclipse.jetty</groupId>
+		        <artifactId>jetty-security</artifactId>
+		        <version>11.0.20</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.eclipse.jetty</groupId>
+		        <artifactId>jetty-server</artifactId>
+		        <version>11.0.20</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.eclipse.jetty</groupId>
+		        <artifactId>jetty-servlet</artifactId>
+		        <version>11.0.20</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.eclipse.jetty</groupId>
+		        <artifactId>jetty-util</artifactId>
+		        <version>11.0.20</version>
+		      </dependency>
+			</dependencies>
+		</location>
+		<location includeDependencyDepth="direct" includeDependencyScopes="compile" includeSource="true" label="OSGi Configuration" missingManifest="generate" type="Maven">
+		      <dependency>
+		        <groupId>org.osgi</groupId>
+		        <artifactId>org.osgi.service.cm</artifactId>
+		        <version>1.6.1</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.apache.felix</groupId>
+		        <artifactId>org.apache.felix.configadmin</artifactId>
+		        <version>1.9.26</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.osgi</groupId>
+		        <artifactId>org.osgi.service.configurator</artifactId>
+		        <version>1.0.1</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.apache.felix</groupId>
+		        <artifactId>org.apache.felix.configurator</artifactId>
+		        <version>1.0.18</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.apache.felix</groupId>
+		        <artifactId>org.apache.felix.cm.json</artifactId>
+		        <version>2.0.2</version>
+		      </dependency>
+		      <dependency>
+		        <groupId>org.osgi</groupId>
+		        <artifactId>org.osgi.util.converter</artifactId>
+		        <version>1.0.9</version>
+		      </dependency>
+		</location>
+		<location includeDependencyDepth="infinite" includeDependencyScopes="compile" includeSource="true" label="Glassfish" missingManifest="generate" type="Maven">
+			<dependencies>
+				<dependency>
+					<groupId>org.glassfish.jersey.core</groupId>
+					<artifactId>jersey-client</artifactId>
+					<version>3.1.8</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.glassfish.jersey.core</groupId>
+					<artifactId>jersey-common</artifactId>
+					<version>3.1.8</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.glassfish.jersey.core</groupId>
+					<artifactId>jersey-server</artifactId>
+					<version>3.1.8</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.glassfish.jersey.inject</groupId>
+					<artifactId>jersey-hk2</artifactId>
+					<version>3.1.8</version>
+					<type>jar</type>
+				</dependency>
+			    <dependency>
+			      <groupId>org.glassfish.jersey.media</groupId>
+			      <artifactId>jersey-media-jaxb</artifactId>
+					<version>3.1.8</version>
+			    </dependency>
+			    <dependency>
+			      <groupId>org.glassfish.jersey.media</groupId>
+			      <artifactId>jersey-media-json-jackson</artifactId>
+					<version>3.1.8</version>
+			    </dependency>
+			</dependencies>
+		</location>
+		<location includeDependencyDepth="direct" includeDependencyScopes="compile" includeSource="true" label="SPI" missingManifest="generate" type="Maven">
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.aries.spifly</groupId>
+					<artifactId>org.apache.aries.spifly.dynamic.bundle</artifactId>
+					<version>1.3.7</version>
+					<type>jar</type>
+				</dependency>
+			</dependencies>
+		</location>
+		<location includeDependencyDepth="direct" includeDependencyScopes="compile" includeSource="true" label="JAXB / JSON Support" missingManifest="generate" type="Maven">
+			<dependencies>
+				<dependency>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-annotations</artifactId>
+					<version>2.17.2</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-core</artifactId>
+					<version>2.17.2</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-databind</artifactId>
+					<version>2.17.2</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>com.fasterxml.jackson.jakarta.rs</groupId>
+					<artifactId>jackson-jakarta-rs-json-provider</artifactId>
+					<version>2.17.2</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>jakarta.json.bind</groupId>
+					<artifactId>jakarta.json.bind-api</artifactId>
+					<version>3.0.0</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>jakarta.json</groupId>
+					<artifactId>jakarta.json-api</artifactId>
+					<version>2.1.3</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.parsson</groupId>
+					<artifactId>jakarta.json</artifactId>
+					<version>1.1.5</version>
+					<type>jar</type>
+				</dependency>
+			      <dependency>
+			        <groupId>jakarta.xml.bind</groupId>
+			        <artifactId>jakarta.xml.bind-api</artifactId>
+			        <version>4.0.1</version>
+			      </dependency>
+			      <dependency>
+			        <groupId>com.sun.xml.bind</groupId>
+			        <artifactId>jaxb-osgi</artifactId>
+			        <version>4.0.4</version>
+			      </dependency>
+			</dependencies>
+		</location>
+		<location includeDependencyDepth="direct" includeDependencyScopes="compile" includeSource="true" label="JakartaRS Whiteboard" missingManifest="generate" type="Maven">
+			<dependencies>
+				<dependency>
+					<groupId>jakarta.ws.rs</groupId>
+					<artifactId>jakarta.ws.rs-api</artifactId>
+					<version>3.1.0</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.osgi-technology.rest</groupId>
+					<artifactId>org.eclipse.osgitech.rest.jetty</artifactId>
+					<version>1.2.2</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.osgi-technology.rest</groupId>
+					<artifactId>org.eclipse.osgitech.rest</artifactId>
+					<version>1.2.2</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.osgi</groupId>
+					<artifactId>org.osgi.service.jakartars</artifactId>
+					<version>2.0.0</version>
+					<type>jar</type>
+				</dependency>
+			</dependencies>
+		</location>
+		<location includeDependencyDepth="direct" includeDependencyScopes="compile" includeSource="true" label="ECF Jakarta-RS Distribution Provider" missingManifest="generate" type="Maven">
+			<dependencies>
+				<dependency>
+					<groupId>org.eclipse.ecf.jakartars</groupId>
+					<artifactId>org.eclipse.ecf.provider.jakartars.client</artifactId>
+					<version>1.0.0-SNAPSHOT</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.ecf.jakartars</groupId>
+					<artifactId>org.eclipse.ecf.provider.jakartars.server</artifactId>
+					<version>1.0.0-SNAPSHOT</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.ecf.jakartars</groupId>
+					<artifactId>org.eclipse.ecf.provider.jakartars</artifactId>
+					<version>1.0.0-SNAPSHOT</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.ecf.jakartars</groupId>
+					<artifactId>org.eclipse.ecf.provider.jersey.client</artifactId>
+					<version>1.0.0-SNAPSHOT</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.ecf.jakartars</groupId>
+					<artifactId>org.eclipse.ecf.provider.jersey.server</artifactId>
+					<version>1.0.0-SNAPSHOT</version>
 					<type>jar</type>
 				</dependency>
 			</dependencies>

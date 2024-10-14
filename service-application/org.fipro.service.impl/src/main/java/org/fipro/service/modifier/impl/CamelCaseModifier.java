@@ -1,21 +1,20 @@
 package org.fipro.service.modifier.impl;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 import org.fipro.service.modifier.StringModifier;
 import org.osgi.service.component.annotations.Component;
 
-@Path("/modify")
+@Path("/camelcase")
 @Component(
-	immediate = true,
 	property = {
 		"service.exported.interfaces=*",
-		"service.exported.intents=jaxrs",
-        "ecf.jaxrs.server.pathPrefix=/camelcase"})
+		"service.exported.intents=jakartars",
+		"osgi.jakartars.resource=true"})
 public class CamelCaseModifier implements StringModifier {
 
 	@GET

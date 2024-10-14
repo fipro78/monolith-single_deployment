@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.fipro.service</groupId>
   <artifactId>service-application</artifactId>
@@ -10,57 +12,15 @@
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <bnd.version>7.0.0</bnd.version>
-    <jetty.version>10.0.8</jetty.version>
+    <jakartars.whiteboard.version>1.2.2</jakartars.whiteboard.version>
+    <jersey.version>3.1.8</jersey.version>
   </properties>
-
-  <repositories>
-    <repository>
-      <id>bnd-release</id>
-      <name>Bndtools</name>
-      <url>https://bndtools.jfrog.io/bndtools/libs-release/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>OSGi</id>
-      <name>OSGi public binaries</name>
-      <url>https://oss.sonatype.org/content/groups/osgi</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>Apache Snapshots</id>
-      <url>https://repository.apache.org/content/groups/snapshots/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>bnd-release</id>
-      <name>Bndtools</name>
-      <url>https://bndtools.jfrog.io/bndtools/libs-release/</url>
-    </pluginRepository>
-  </pluginRepositories>
 
   <modules>
     <module>org.fipro.service.api</module>
     <module>org.fipro.service.impl</module>
     <module>org.fipro.service.app.commandline</module>
-    <module>org.fipro.service.app.jaxrs</module>
+    <module>org.fipro.service.app.jakartars</module>
     <module>org.fipro.service.app.rs</module>
   </modules>
 
@@ -81,8 +41,7 @@
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>org.osgi.service.component.annotations</artifactId>
-        <!-- 1.5.1 is available but not yet supported by the used Eclipse version in this example -->
-        <version>1.4.0</version>
+        <version>1.5.1</version>
         <scope>provided</scope>
       </dependency>
 
@@ -90,7 +49,7 @@
       <dependency>
         <groupId>org.eclipse.platform</groupId>
         <artifactId>org.eclipse.osgi</artifactId>
-        <version>3.18.500</version>
+        <version>3.18.600</version>
         <scope>runtime</scope>
       </dependency>
 
@@ -126,17 +85,23 @@
         <scope>runtime</scope>
       </dependency>
 
-      <!--  Metatype  -->
+      <!--  OSGi Configurator  -->
       <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>org.osgi.service.metatype</artifactId>
-        <version>1.4.1</version>
+        <artifactId>org.osgi.service.configurator</artifactId>
+        <version>1.0.1</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.configurator</artifactId>
+        <version>1.0.18</version>
         <scope>runtime</scope>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.platform</groupId>
-        <artifactId>org.eclipse.equinox.metatype</artifactId>
-        <version>1.6.300</version>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.cm.json</artifactId>
+        <version>2.0.2</version>
         <scope>runtime</scope>
       </dependency>
 
@@ -168,115 +133,32 @@
         <scope>runtime</scope>
       </dependency>
 
-      <!--  Http Whiteboard  -->
+      <!--  Metatype  -->
       <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>org.osgi.service.http.whiteboard</artifactId>
-        <version>1.1.1</version>
+        <artifactId>org.osgi.service.metatype</artifactId>
+        <version>1.4.1</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.metatype.annotations</artifactId>
+        <version>1.4.1</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>org.apache.felix.http.jetty</artifactId>
-        <version>4.2.0</version>
-<!--        <version>4.2.12</version> Jetty 9.4.51 -->
-<!--        <version>5.0.4</version> Jetty 11.0.13 -->
+        <groupId>org.eclipse.platform</groupId>
+        <artifactId>org.eclipse.equinox.metatype</artifactId>
+        <version>1.6.300</version>
         <scope>runtime</scope>
       </dependency>
 
-      <!--  Http Servlet 3.1 API with contract  -->
-      <dependency>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>org.apache.felix.http.servlet-api</artifactId>
-        <version>1.2.0</version>
-        <exclusions>
-          <exclusion>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-servlet-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-
-      <!--  JAX-RS Whiteboard  -->
+      <!--  OSGi Converter  -->
       <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>org.osgi.service.jaxrs</artifactId>
-        <version>1.0.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.aries.jax.rs</groupId>
-        <artifactId>org.apache.aries.jax.rs.whiteboard</artifactId>
-        <version>2.0.2</version>
-      </dependency>
-
-      <!--  JAX-RS 2.1 API with contract  -->
-      <dependency>
-        <groupId>org.apache.aries.spec</groupId>
-        <artifactId>org.apache.aries.javax.jax.rs-api</artifactId>
-        <version>1.0.4</version>
-      </dependency>
-
-      <!--  JAX-RS Jackson  -->
-      <dependency>
-        <groupId>org.apache.aries.jax.rs</groupId>
-        <artifactId>org.apache.aries.jax.rs.jackson</artifactId>
-        <version>2.0.2</version>
-      </dependency>
-
-      <!-- Java 11 XML -->
-      <dependency>
-        <groupId>com.sun.activation</groupId>
-        <artifactId>jakarta.activation</artifactId>
-        <version>1.2.2</version>
+        <artifactId>org.osgi.util.converter</artifactId>
+        <version>1.0.9</version>
         <scope>runtime</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-osgi</artifactId>
-        <version>2.3.3</version>
-        <scope>runtime</scope>
-      </dependency>
-      <dependency>
-        <groupId>jakarta.xml.bind</groupId>
-        <artifactId>jakarta.xml.bind-api</artifactId>
-        <version>2.3.3</version>
-        <scope>runtime</scope>
-        <exclusions>
-          <exclusion>
-            <groupId>jakarta.activation</groupId>
-            <artifactId>jakarta.activation-api</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>jakarta.xml.ws</groupId>
-        <artifactId>jakarta.xml.ws-api</artifactId>
-        <version>2.3.3</version>
-        <scope>runtime</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.geronimo.specs</groupId>
-        <artifactId>geronimo-json_1.1_spec</artifactId>
-        <version>1.5</version>
-        <scope>runtime</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.geronimo.specs</groupId>
-        <artifactId>geronimo-jaxrs_2.1_spec</artifactId>
-        <version>1.1</version>
-        <scope>runtime</scope>
-      </dependency>
-
-      <!-- OSGi Service Loader Mediator -->
-      <dependency>
-          <groupId>org.apache.aries.spifly</groupId>
-          <artifactId>org.apache.aries.spifly.dynamic.bundle</artifactId>
-          <version>1.3.6</version>
       </dependency>
 
       <!--  OSGi Function  -->
@@ -291,7 +173,7 @@
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>org.osgi.util.promise</artifactId>
-        <version>1.2.0</version>
+        <version>1.3.0</version>
         <scope>runtime</scope>
       </dependency>
 
@@ -299,29 +181,183 @@
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>org.osgi.util.pushstream</artifactId>
-        <version>1.0.2</version>
+        <version>1.1.0</version>
         <scope>runtime</scope>
       </dependency>
 
-      <!--  OSGi Converter  -->
+      <!-- Jakarta Servlet Whiteboard -->
       <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>org.osgi.util.converter</artifactId>
-        <version>1.0.9</version>
+        <artifactId>org.osgi.service.servlet</artifactId>
+        <version>2.0.0</version>
+      </dependency>
+      <!-- Jakarta RESTful Web Services Whiteboard -->
+      <dependency>
+        <groupId>jakarta.ws.rs</groupId>
+        <artifactId>jakarta.ws.rs-api</artifactId>
+        <version>3.1.0</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.jakartars</artifactId>
+        <version>2.0.0</version>
+      </dependency>
+      <!-- The whiteboard implementation -->
+      <dependency>
+        <groupId>org.eclipse.osgi-technology.rest</groupId>
+        <artifactId>org.eclipse.osgitech.rest</artifactId>
+        <version>${jakartars.whiteboard.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <!-- The whiteboard implementation default configuration, when you want to
+      use it -->
+      <dependency>
+        <groupId>org.eclipse.osgi-technology.rest</groupId>
+        <artifactId>org.eclipse.osgitech.rest.config</artifactId>
+        <version>${jakartars.whiteboard.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <!-- An optional fragment for the use of server sent events -->
+      <dependency>
+        <groupId>org.eclipse.osgi-technology.rest</groupId>
+        <artifactId>org.eclipse.osgitech.rest.sse</artifactId>
+        <version>${jakartars.whiteboard.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <!-- The adapter to run the implementation with Jetty -->
+      <dependency>
+        <groupId>org.eclipse.osgi-technology.rest</groupId>
+        <artifactId>org.eclipse.osgitech.rest.jetty</artifactId>
+        <version>${jakartars.whiteboard.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <!-- The adapter to run the implementation with the OSGi Servlet
+      Whiteboard -->
+      <dependency>
+        <groupId>org.eclipse.osgi-technology.rest</groupId>
+        <artifactId>org.eclipse.osgitech.rest.servlet.whiteboard</artifactId>
+        <version>${jakartars.whiteboard.version}</version>
         <scope>runtime</scope>
       </dependency>
 
-      <!--  OSGi Configurator  -->
+      <!-- Jersey - explicitly added to be able to update the dependency that is
+      provided by org.eclipse.osgi-technology.rest -->
+      <dependency>
+        <groupId>org.glassfish.jersey</groupId>
+        <artifactId>jersey-bom</artifactId>
+        <version>${jersey.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- Condition Service -->
       <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>org.osgi.service.configurator</artifactId>
-        <version>1.0.1</version>
-        <scope>provided</scope>
+        <artifactId>org.osgi.service.condition</artifactId>
+        <version>1.0.0</version>
       </dependency>
+
+      <!-- Tracker -->
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.util.tracker</artifactId>
+        <version>1.5.4</version>
+      </dependency>
+
+      <!--  Jetty  -->
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-bom</artifactId>
+        <version>11.0.20</version>
+        <type>pom</type>
+      </dependency>
+
+      <!-- 
+        org.apache.felix.http.jetty:
+        - implementation of the R8.1 OSGi Servlet Service, the R7 OSGi Http Service and
+      the R7 OSGi Http Whiteboard Specification 
+        - has itself the dependencies to Eclipse Jetty, which makes those bundles
+      transitively available in our setup
+      -->
       <dependency>
         <groupId>org.apache.felix</groupId>
-        <artifactId>org.apache.felix.configurator</artifactId>
-        <version>1.0.6</version> <!-- newer versions have new dependencies that need to be handled -->
+        <artifactId>org.apache.felix.http.jetty</artifactId>
+        <version>5.1.8</version>
+        <scope>runtime</scope>
+      </dependency>
+
+      <!--  Http Servlet 3.1 API with contract  -->
+      <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.http.servlet-api</artifactId>
+        <version>2.1.0</version>
+        <!-- <version>3.0.0</version> -->
+        <scope>runtime</scope>
+      </dependency>
+
+      <!-- Java XML -->
+      <dependency>
+        <groupId>jakarta.xml.bind</groupId>
+        <artifactId>jakarta.xml.bind-api</artifactId>
+        <version>4.0.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-osgi</artifactId>
+        <version>4.0.4</version>
+        <scope>runtime</scope>
+      </dependency>
+
+      <!-- JSON Support -->
+      <dependency>
+        <groupId>jakarta.json</groupId>
+        <artifactId>jakarta.json-api</artifactId>
+        <version>2.1.3</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.json.bind</groupId>
+        <artifactId>jakarta.json.bind-api</artifactId>
+        <version>3.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.17.2</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.17.2</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.17.2</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.jakarta.rs</groupId>
+        <artifactId>jackson-jakarta-rs-json-provider</artifactId>
+        <version>2.17.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.parsson</groupId>
+        <artifactId>jakarta.json</artifactId>
+        <version>1.1.5</version>
+      </dependency>
+
+      <!-- extender that facilitates the use of JRE SPI providers -->
+      <dependency>
+        <groupId>org.apache.aries.spifly</groupId>
+        <artifactId>org.apache.aries.spifly.dynamic.framework.extension</artifactId>
+        <version>1.3.7</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.hk2</groupId>
+        <artifactId>osgi-resource-locator</artifactId>
+        <version>1.0.3</version>
         <scope>runtime</scope>
       </dependency>
 
@@ -331,6 +367,11 @@
         <artifactId>slf4j-api</artifactId>
         <version>1.7.36</version>
         <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.7.36</version>
       </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>
@@ -394,7 +435,7 @@
           </exclusion>
         </exclusions>
       </dependency>
-      
+
       <!-- ECF dependencies -->
       <dependency>
         <groupId>org.eclipse.platform</groupId>
@@ -406,27 +447,32 @@
         <artifactId>org.eclipse.equinox.concurrent</artifactId>
         <version>1.2.100</version>
       </dependency>
-            
+      <dependency>
+        <groupId>org.eclipse.platform</groupId>
+        <artifactId>org.eclipse.equinox.common</artifactId>
+        <version>3.18.200</version>
+      </dependency>
+
       <!-- ECF -->
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf</artifactId>
-        <version>3.10.0</version>
+        <version>3.11.0</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf.discovery</artifactId>
-        <version>5.1.1</version>
+        <version>5.2.0</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf.identity</artifactId>
-        <version>3.9.402</version>
+        <version>3.10.0</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf.osgi.services.distribution</artifactId>
-        <version>2.1.600</version>
+        <version>2.1.700</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
@@ -436,7 +482,7 @@
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf.osgi.services.remoteserviceadmin.proxy</artifactId>
-        <version>1.0.101</version>
+        <version>1.0.102</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
@@ -456,167 +502,67 @@
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.osgi.services.remoteserviceadmin</artifactId>
-        <version>1.6.300</version>
+        <version>1.6.301</version>
       </dependency>
-      
+
       <!-- ECF Discovery - Zeroconf -->
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf.provider.jmdns</artifactId>
-        <version>4.3.301</version>
+        <version>4.4.0</version>
       </dependency>
-      
+
       <!-- ECF Distribution Provider - Generic -->
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf.provider</artifactId>
-        <version>4.9.1</version>
+        <version>4.10.0</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf.provider.remoteservice</artifactId>
         <version>4.6.1</version>
       </dependency>
-      
+
       <!-- ECF Console -->
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf.console</artifactId>
-        <version>1.3.100</version>
+        <version>1.4.100</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.ecf</groupId>
         <artifactId>org.eclipse.ecf.osgi.services.remoteserviceadmin.console</artifactId>
-        <version>1.3.0</version>
-      </dependency>
-      
-      <!-- ECF JAX-RS Distribution Provider -->
-      <dependency>
-        <groupId>org.eclipse.ecf</groupId>
-        <artifactId>org.eclipse.ecf.provider.jaxrs</artifactId>
-        <version>1.7.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.ecf</groupId>
-        <artifactId>org.eclipse.ecf.provider.jaxrs.server</artifactId>
-        <version>1.11.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.ecf</groupId>
-        <artifactId>org.eclipse.ecf.provider.jersey.server</artifactId>
-        <version>1.11.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.ecf</groupId>
-        <artifactId>org.eclipse.ecf.provider.jaxrs.client</artifactId>
-        <version>1.8.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.ecf</groupId>
-        <artifactId>org.eclipse.ecf.provider.jersey.client</artifactId>
-        <version>1.8.2</version>
-      </dependency>
-      
-      <!-- ECF JAX-RS Distribution Provider Dependencies -->
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.15.3</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.jaxrs</groupId>
-        <artifactId>jackson-jaxrs-json-provider</artifactId>
-        <version>2.15.3</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.containers</groupId>
-        <artifactId>jersey-container-servlet</artifactId>
-        <version>2.30.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.containers</groupId>
-        <artifactId>jersey-container-servlet-core</artifactId>
-        <version>2.30.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.core</groupId>
-        <artifactId>jersey-client</artifactId>
-        <version>2.30.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.media</groupId>
-        <artifactId>jersey-media-json-jackson</artifactId>
-        <version>2.30.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.inject</groupId>
-        <artifactId>jersey-hk2</artifactId>
-        <version>2.30.1</version>
+        <version>1.3.200</version>
       </dependency>
 
-      <!-- Equinox OSGi Http Service and Http Whiteboard -->
-      <!--
+      <!-- ECF Jakarta-RS Distribution Provider -->
       <dependency>
-        <groupId>org.eclipse.platform</groupId>
-        <artifactId>org.eclipse.osgi.services</artifactId>
-        <version>3.10.200</version>
-      </dependency>
-      -->
-      <dependency>
-        <groupId>org.eclipse.platform</groupId>
-        <artifactId>org.eclipse.equinox.http.jetty</artifactId>
-        <version>3.8.300</version>
+        <groupId>org.eclipse.ecf.jakartars</groupId>
+        <artifactId>org.eclipse.ecf.provider.jakartars</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.platform</groupId>
-        <artifactId>org.eclipse.equinox.http.servlet</artifactId>
-        <version>1.7.400</version>
-      </dependency>
-      
-      <!-- Jetty 10 -->
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-http</artifactId>
-        <version>${jetty.version}</version>
+        <groupId>org.eclipse.ecf.jakartars</groupId>
+        <artifactId>org.eclipse.ecf.provider.jakartars.server</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-io</artifactId>
-        <version>${jetty.version}</version>
+        <groupId>org.eclipse.ecf.jakartars</groupId>
+        <artifactId>org.eclipse.ecf.provider.jersey.server</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-security</artifactId>
-        <version>${jetty.version}</version>
+        <groupId>org.eclipse.ecf.jakartars</groupId>
+        <artifactId>org.eclipse.ecf.provider.jakartars.client</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-server</artifactId>
-        <version>${jetty.version}</version>
+        <groupId>org.eclipse.ecf.jakartars</groupId>
+        <artifactId>org.eclipse.ecf.provider.jersey.client</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
       </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-servlet</artifactId>
-        <version>${jetty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-util</artifactId>
-        <version>${jetty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-util-ajax</artifactId>
-        <version>${jetty.version}</version>
-      </dependency>
-      
-      <!-- Jetty 10 Dependencies -->
-      <dependency>
-        <groupId>jakarta.servlet</groupId>
-        <artifactId>jakarta.servlet-api</artifactId>
-        <version>4.0.4</version>
-      </dependency>
-      <!-- jakarta.xml.bind:jakarta.xml.bind-api:2.3.3 -->
+
     </dependencies>
   </dependencyManagement>
 
@@ -663,7 +609,8 @@ Bundle-SymbolicName: ${project.groupId}.${project.artifactId}
           <version>3.3.0</version>
           <configuration>
             <archive>
-              <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+              <manifestFile>
+                ${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
             </archive>
             <skipIfEmpty>true</skipIfEmpty>
           </configuration>

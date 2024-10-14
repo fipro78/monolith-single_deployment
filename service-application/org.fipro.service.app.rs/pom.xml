@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.fipro.service</groupId>
@@ -10,12 +12,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.fipro.service</groupId>
-      <artifactId>impl</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>osgi.core</artifactId>
     </dependency>
@@ -23,48 +19,61 @@
       <groupId>org.osgi</groupId>
       <artifactId>osgi.annotation</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.service.configurator</artifactId>
-    </dependency>
 
     <!--  The OSGi framework RI is Equinox  -->
     <dependency>
       <groupId>org.eclipse.platform</groupId>
       <artifactId>org.eclipse.osgi</artifactId>
     </dependency>
+
     <!--  Declarative Services  -->
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.service.component</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component.annotations</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.scr</artifactId>
     </dependency>
+
     <!--  Configuration Admin  -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.cm</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.configadmin</artifactId>
     </dependency>
-    <!--  Metatype  -->
-    <dependency>
-      <groupId>org.eclipse.platform</groupId>
-      <artifactId>org.eclipse.equinox.metatype</artifactId>
-    </dependency>
+
+    <!--  OSGi Configurator  -->
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.service.metatype</artifactId>
+      <artifactId>org.osgi.service.configurator</artifactId>
     </dependency>
-    <!--  Event Admin  -->
     <dependency>
-      <groupId>org.eclipse.platform</groupId>
-      <artifactId>org.eclipse.equinox.event</artifactId>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.configurator</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.cm.json</artifactId>
+    </dependency>
+
+    <!--  Event Admin  -->
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.service.event</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.eclipse.platform</groupId>
+      <artifactId>org.eclipse.equinox.event</artifactId>
+    </dependency>
+
     <!--  Log Stream Service  -->
     <dependency>
       <groupId>org.osgi</groupId>
@@ -75,6 +84,144 @@
       <artifactId>org.eclipse.equinox.log.stream</artifactId>
     </dependency>
 
+    <!--  Metatype  -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.metatype</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.platform</groupId>
+      <artifactId>org.eclipse.equinox.metatype</artifactId>
+    </dependency>
+
+    <!--  OSGi Function  -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.util.function</artifactId>
+    </dependency>
+    <!--  OSGi Promise  -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.util.promise</artifactId>
+    </dependency>
+    <!--  OSGi PushStream  -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.util.pushstream</artifactId>
+    </dependency>
+    <!--  OSGi Converter  -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.util.converter</artifactId>
+    </dependency>
+
+    <!--  Jakarta RESTful Webservices Whiteboard  -->
+    <dependency>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.jakartars</artifactId>
+    </dependency>
+    <!-- The whiteboard implementation -->
+    <dependency>
+      <groupId>org.eclipse.osgi-technology.rest</groupId>
+      <artifactId>org.eclipse.osgitech.rest</artifactId>
+    </dependency>
+    <!-- The adapter to run the implementation with Jetty -->
+    <dependency>
+      <groupId>org.eclipse.osgi-technology.rest</groupId>
+      <artifactId>org.eclipse.osgitech.rest.jetty</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.glassfish.jersey.media</groupId>
+      <artifactId>jersey-media-json-jackson</artifactId>
+    </dependency>
+
+    <!--  Several implementations need to log using SLF4J  -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+    </dependency>
+
+    <!-- Java XML -->
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-osgi</artifactId>
+    </dependency>
+
+    <!-- JSON Support -->
+    <dependency>
+      <groupId>jakarta.json</groupId>
+      <artifactId>jakarta.json-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.json.bind</groupId>
+      <artifactId>jakarta.json.bind-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.jakarta.rs</groupId>
+      <artifactId>jackson-jakarta-rs-json-provider</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.parsson</groupId>
+      <artifactId>jakarta.json</artifactId>
+    </dependency>
+
+    <!-- extender that facilitates the use of JRE SPI providers -->
+    <dependency>
+      <groupId>org.apache.aries.spifly</groupId>
+      <artifactId>org.apache.aries.spifly.dynamic.framework.extension</artifactId>
+    </dependency>
+
+    <!--  The Gogo Shell  -->
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.gogo.shell</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.gogo.runtime</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.gogo.command</artifactId>
+      <scope>compile</scope>
+    </dependency>
+
     <!-- ECF dependencies -->
     <dependency>
       <groupId>org.eclipse.platform</groupId>
@@ -83,6 +230,10 @@
     <dependency>
       <groupId>org.eclipse.platform</groupId>
       <artifactId>org.eclipse.equinox.concurrent</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.platform</groupId>
+      <artifactId>org.eclipse.equinox.common</artifactId>
     </dependency>
 
     <!-- ECF -->
@@ -127,123 +278,37 @@
       <artifactId>org.eclipse.osgi.services.remoteserviceadmin</artifactId>
     </dependency>
 
-    <!-- ECF JAX-RS Distribution Provider -->
+    <!-- ECF Discovery - Zeroconf -->
     <dependency>
       <groupId>org.eclipse.ecf</groupId>
-      <artifactId>org.eclipse.ecf.provider.jaxrs</artifactId>
+      <artifactId>org.eclipse.ecf.provider.jmdns</artifactId>
+    </dependency>
+
+    <!-- ECF Distribution Provider - Generic -->
+    <dependency>
+      <groupId>org.eclipse.ecf</groupId>
+      <artifactId>org.eclipse.ecf.provider</artifactId>
     </dependency>
     <dependency>
       <groupId>org.eclipse.ecf</groupId>
-      <artifactId>org.eclipse.ecf.provider.jaxrs.server</artifactId>
+      <artifactId>org.eclipse.ecf.provider.remoteservice</artifactId>
+    </dependency>
+
+    <!-- ECF Distribution Provider - JakartaRS -->
+    <dependency>
+      <groupId>org.eclipse.ecf.jakartars</groupId>
+      <artifactId>org.eclipse.ecf.provider.jakartars</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.eclipse.ecf</groupId>
+      <groupId>org.eclipse.ecf.jakartars</groupId>
+      <artifactId>org.eclipse.ecf.provider.jakartars.server</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.ecf.jakartars</groupId>
       <artifactId>org.eclipse.ecf.provider.jersey.server</artifactId>
     </dependency>
 
-    <!-- ECF JAX-RS Distribution Provider Dependencies -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.jaxrs</groupId>
-      <artifactId>jackson-jaxrs-json-provider</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jersey.containers</groupId>
-      <artifactId>jersey-container-servlet</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jersey.containers</groupId>
-      <artifactId>jersey-container-servlet-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jersey.core</groupId>
-      <artifactId>jersey-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jersey.media</groupId>
-      <artifactId>jersey-media-json-jackson</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jersey.inject</groupId>
-      <artifactId>jersey-hk2</artifactId>
-    </dependency>
-
-    <!-- Equinox OSGi Http Service and Http Whiteboard -->
-    <!--
-    <dependency>
-      <groupId>org.eclipse.platform</groupId>
-      <artifactId>org.eclipse.osgi.services</artifactId>
-    </dependency>
-    -->
-    <dependency>
-      <groupId>org.eclipse.platform</groupId>
-      <artifactId>org.eclipse.equinox.http.jetty</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.platform</groupId>
-      <artifactId>org.eclipse.equinox.http.servlet</artifactId>
-    </dependency>
-
-    <!-- Jetty 10 -->
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-http</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-io</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-security</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-server</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-servlet</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-util</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-util-ajax</artifactId>
-    </dependency>
-
-    <!-- Jetty 10 Dependencies -->
-    <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.xml.bind</groupId>
-      <artifactId>jakarta.xml.bind-api</artifactId>
-    </dependency>
-
-    <!-- Gogo Shell & ECF Console - optionally -->
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.gogo.shell</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.gogo.runtime</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.gogo.command</artifactId>
-      <scope>runtime</scope>
-    </dependency>
+    <!-- ECF Console -->
     <dependency>
       <groupId>org.eclipse.ecf</groupId>
       <artifactId>org.eclipse.ecf.console</artifactId>
@@ -253,18 +318,15 @@
       <artifactId>org.eclipse.ecf.osgi.services.remoteserviceadmin.console</artifactId>
     </dependency>
 
-    <!--  Several implementations need to log using SLF4J  -->
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
+      <groupId>org.fipro.service</groupId>
+      <artifactId>impl</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-core</artifactId>
+      <groupId>org.fipro.service</groupId>
+      <artifactId>app.jakartars</artifactId>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 

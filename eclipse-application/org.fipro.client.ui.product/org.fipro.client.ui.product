@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Service Client Application" uid="org.fipro.client.ui.product" id="org.fipro.client.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true" autoIncludeRequirements="true">
+<product name="Service Client Application" uid="org.fipro.client.ui.product" id="org.fipro.client.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" type="features" includeLaunchers="true" autoIncludeRequirements="true">
 
    <configIni use="default">
    </configIni>
@@ -9,6 +9,8 @@
    <launcherArgs>
       <programArgs>-clearPersistedState -console
       </programArgs>
+      <vmArgs>-Djakarta.ws.rs.client.ClientBuilder=org.glassfish.jersey.client.JerseyClientBuilder -Djakarta.ws.rs.ext.RuntimeDelegate=org.glassfish.jersey.internal.RuntimeDelegateImpl
+      </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
@@ -32,13 +34,16 @@
       <feature id="org.eclipse.emf.ecore"/>
       <feature id="org.eclipse.emf.common"/>
       <feature id="org.fipro.client.ecf.feature" installMode="root"/>
-      <feature id="org.fipro.client.jaxrs.feature" installMode="root"/>
+      <feature id="org.fipro.client.jakartars.feature" installMode="root"/>
       <feature id="org.fipro.client.ui.feature" installMode="root"/>
    </features>
 
    <configurations>
+      <plugin id="org.apache.aries.spifly.dynamic.bundle" autoStart="true" startLevel="2" />
+      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.ecf.osgi.services.distribution" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.ecf.provider.jersey.client" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.cm" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />

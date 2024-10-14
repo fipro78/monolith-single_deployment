@@ -3,6 +3,7 @@ index: target/index.xml;name="app"
 -standalone: ${index}
 
 -runrequires: \
+	osgi.identity;filter:='(osgi.identity=org.fipro.service.app.commandline)',\
 	osgi.identity;filter:='(osgi.identity=org.fipro.service.impl)',\
 	bnd.identity;id='com.sun.xml.bind.jaxb-osgi'
 -runfw: org.eclipse.osgi
@@ -10,12 +11,14 @@ index: target/index.xml;name="app"
 
 -resolve.effective: active;skip:="osgi.service"
 -runbundles: \
-	com.sun.xml.bind.jaxb-osgi;version='[2.3.3,2.3.4)',\
-	jakarta.activation-api;version='[1.2.2,1.2.3)',\
-	jakarta.xml.bind-api;version='[2.3.3,2.3.4)',\
-	org.apache.aries.javax.jax.rs-api;version='[1.0.4,1.0.5)',\
-	org.apache.felix.scr;version='[2.2.0,2.2.1)',\
+	com.sun.xml.bind.jaxb-osgi;version='[4.0.4,4.0.5)',\
+	jakarta.activation-api;version='[2.1.2,2.1.3)',\
+	jakarta.ws.rs-api;version='[3.1.0,3.1.1)',\
+	jakarta.xml.bind-api;version='[4.0.1,4.0.2)',\
+	org.apache.felix.scr;version='[2.2.6,2.2.7)',\
 	org.fipro.service.api;version='[1.0.0,1.0.1)',\
+	org.fipro.service.app.commandline;version='[1.0.0,1.0.1)',\
 	org.fipro.service.impl;version='[1.0.0,1.0.1)',\
+	org.osgi.service.component;version='[1.5.1,1.5.2)',\
 	org.osgi.util.function;version='[1.2.0,1.2.1)',\
-	org.osgi.util.promise;version='[1.2.0,1.2.1)'
+	org.osgi.util.promise;version='[1.3.0,1.3.1)'

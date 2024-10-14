@@ -2,8 +2,8 @@ package org.fipro.client.ui.parts;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Inject;
 
 import org.eclipse.e4.core.di.extensions.Service;
 import org.eclipse.jface.layout.GridDataFactory;

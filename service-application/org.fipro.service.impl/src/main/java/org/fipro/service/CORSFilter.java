@@ -2,9 +2,9 @@ package org.fipro.service;
 
 import java.io.IOException;
 
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.container.ContainerResponseContext;
+import jakarta.ws.rs.container.ContainerResponseFilter;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -20,10 +20,10 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true, 
 	property = { 
-		// property needed by the ECF JAX-RS Distribution Provider
-		"jaxrs-service-exported-config-target=ecf.jaxrs.jersey.server",
-		// property needed by the JAX-RS Whiteboard
-		"osgi.jaxrs.extension=true"
+		// property needed by the ECF Jakarta-RS Distribution Provider
+		"jakartars-service-exported-config-target=ecf.jakartars.jersey.server",
+		// property needed by the Jakarta-RS Whiteboard
+		"osgi.jakartars.extension=true"
 	})
 public class CORSFilter implements ContainerResponseFilter {
 
