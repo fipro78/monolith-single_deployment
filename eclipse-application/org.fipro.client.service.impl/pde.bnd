@@ -1,0 +1,11 @@
+-buildpath: \
+	org.eclipse.osgi,\
+	org.fipro.service.api,\
+	jakarta.ws.rs-api
+-runee: JavaSE-11
+-sources: false
+Automatic-Module-Name: org.fipro.client.service.impl
+Bundle-ActivationPolicy: lazy
+Bundle-Name: Offline Service Implementations
+Bundle-SymbolicName: org.fipro.client.service.impl
+Bundle-Version: 1.0.0.qualifier
